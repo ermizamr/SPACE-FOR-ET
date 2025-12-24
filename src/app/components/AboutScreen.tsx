@@ -45,7 +45,7 @@ export function AboutScreen({ onBack, onNavigateToDesignSystem }: AboutScreenPro
 
       {/* Mission Section */}
       <div className="px-6 py-6">
-        <h3 className="text-xl font-bold text-white mb-4">Our Mission</h3>
+        <h3 className="text-xl font-bold text-white mb-4">MISSION</h3>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -53,10 +53,10 @@ export function AboutScreen({ onBack, onNavigateToDesignSystem }: AboutScreenPro
           className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-6"
         >
           <p className="text-gray-300 mb-4">
-            SPACE for ET is dedicated to inspiring the next generation of space enthusiasts and scientists in Ethiopia and beyond. We believe in making space science accessible, engaging, and educational for everyone.
+           This app (SPACE for ET) is dedicated to inspiring the next generation of space enthusiasts and scientists in Ethiopia and beyond. I believe in making space science accessible, engaging, and educational for everyone.
           </p>
           <p className="text-gray-300">
-            Through our app, we showcase the wonders of space exploration, celebrate Ethiopia's growing role in space science, and foster a community passionate about the cosmos.
+            Through my app, I showcase the wonders of space exploration, celebrate Ethiopia's growing role in space science, and foster a community passionate about the cosmos.
           </p>
         </motion.div>
       </div>
@@ -105,35 +105,20 @@ export function AboutScreen({ onBack, onNavigateToDesignSystem }: AboutScreenPro
         >
           <h3 className="text-lg font-bold text-white mb-3">Get in Touch</h3>
           <p className="text-gray-300 text-sm mb-4">
-            Have questions or suggestions? We'd love to hear from you!
+            Have questions or suggestions? I'd love to hear from you!
           </p>
-          <button className="w-full bg-gradient-to-r from-[#6A5ACD] to-[#4169E1] text-white py-3 rounded-2xl font-semibold">
-            Contact Us
-          </button>
-        </motion.div>
+          <a
+            href="https://t.me/channel_of_ermi"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open SPACE for ET Telegram channel"
+            className="w-full inline-block bg-gradient-to-r from-[#6A5ACD] to-[#4169E1] text-white py-3 rounded-2xl font-semibold text-center"
+          >
+            Contact me
+          </a>
       </div>
 
-      {/* Design System Link */}
-      {onNavigateToDesignSystem && (
-        <div className="px-6 py-6">
-          <motion.button
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            onClick={onNavigateToDesignSystem}
-            className="w-full bg-gradient-to-br from-[#FFD700]/20 to-[#6A5ACD]/20 border border-[#FFD700]/30 rounded-3xl p-6 text-center"
-            whileTap={{ scale: 0.98 }}
-          >
-            <div className="flex items-center justify-center gap-3 mb-2">
-              <Palette className="w-6 h-6 text-[#FFD700]" />
-              <h3 className="text-lg font-bold text-white">Design System</h3>
-            </div>
-            <p className="text-gray-300 text-sm">
-              View complete style guide for Flutter implementation
-            </p>
-          </motion.button>
-        </div>
-      )}
+
 
       {/* Footer */}
       <div className="px-6 py-6 text-center">
@@ -141,7 +126,7 @@ export function AboutScreen({ onBack, onNavigateToDesignSystem }: AboutScreenPro
           Made with ❤️ for space enthusiasts everywhere
         </p>
         <p className="text-gray-600 text-xs mt-2">
-          © 2024 SPACE for ET. All rights reserved.
+          © DECEMBER 2025 (ታኅሣሥ 2017) SPACE for ET. All rights reserved.
         </p>
       </div>
     </div>
