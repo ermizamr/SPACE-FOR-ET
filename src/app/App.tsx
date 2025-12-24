@@ -8,6 +8,15 @@ import { BreakthroughsScreen } from "./components/BreakthroughsScreen";
 import { NewsScreen } from "./components/NewsScreen";
 import { EthiopiaScreen } from "./components/EthiopiaScreen";
 import { ExploreScreen } from "./components/ExploreScreen";
+import type { ExploreTopicId } from "./components/ExploreScreen";
+import TelescopeScreen from "./components/explore/TelescopeScreen";
+import RocketsScreen from "./components/explore/RocketsScreen";
+import PlanetsScreen from "./components/explore/PlanetsScreen";
+import SatellitesScreen from "./components/explore/SatellitesScreen";
+import StarsScreen from "./components/explore/StarsScreen";
+import MoonsScreen from "./components/explore/MoonsScreen";
+import SolarSystemScreen from "./components/explore/SolarSystemScreen";
+import PhysicsScreen from "./components/explore/PhysicsScreen";
 import { AboutScreen } from "./components/AboutScreen";
 import { DesignSystemScreen } from "./components/DesignSystemScreen";
 import { StargazingScreen } from "./components/StargazingScreen";
@@ -38,16 +47,30 @@ import { InstallPrompt } from "./components/InstallPrompt";
  */
 
 type AppState = "splash" | "onboarding" | "main";
-type Screen = "home" | "history" | "breakthroughs" | "news" | "ethiopia" | "explore" | "about" | "design-system" | "stargazing";
+type ExploreTopicScreen = `explore-${ExploreTopicId}`;
+type Screen =
+  | "home"
+  | "history"
+  | "breakthroughs"
+  | "news"
+  | "ethiopia"
+  | "explore"
+  | ExploreTopicScreen
+  | "about"
+  | "design-system"
+  | "stargazing";
 
 export default function App() {
   const [appState, setAppState] = useState<AppState>("splash");
   const [activeScreen, setActiveScreen] = useState<Screen>("home");
   const [activeTab, setActiveTab] = useState<string>("home");
 
+  const isExploreTopicScreen = (screen: Screen): screen is ExploreTopicScreen => screen.startsWith("explore-");
+
   // Handle navigation from home cards
   const handleNavigate = (screen: string) => {
-    setActiveScreen(screen as Screen);
+    const nextScreen = screen as Screen;
+    setActiveScreen(nextScreen);
     // Update tab if it's a main tab
     if (["home", "explore", "news", "ethiopia", "about"].includes(screen)) {
       setActiveTab(screen);
@@ -72,8 +95,20 @@ export default function App() {
 
   // Handle back navigation
   const handleBack = () => {
+    if (isExploreTopicScreen(activeScreen)) {
+      setActiveScreen("explore");
+      setActiveTab("explore");
+      return;
+    }
+
     setActiveScreen("home");
     setActiveTab("home");
+  };
+
+  const handleTopicSelect = (topic: ExploreTopicId) => {
+    const nextScreen = `explore-${topic}` as ExploreTopicScreen;
+    setActiveScreen(nextScreen);
+    setActiveTab("explore");
   };
 
   return (
@@ -137,6 +172,63 @@ export default function App() {
                 {activeScreen === "explore" && (
                   <ExploreScreen
                     key="explore"
+                    onBack={handleBack}
+                    onTopicSelect={handleTopicSelect}
+                  />
+                )}
+
+                {activeScreen === "explore-telescopes" && (
+                  <TelescopeScreen
+                    key="explore-telescopes"
+                    onBack={handleBack}
+                  />
+                )}
+
+                {activeScreen === "explore-rockets" && (
+                  <RocketsScreen
+                    key="explore-rockets"
+                    onBack={handleBack}
+                  />
+                )}
+
+                {activeScreen === "explore-planets" && (
+                  <PlanetsScreen
+                    key="explore-planets"
+                    onBack={handleBack}
+                  />
+                )}
+
+                {activeScreen === "explore-satellites" && (
+                  <SatellitesScreen
+                    key="explore-satellites"
+                    onBack={handleBack}
+                  />
+                )}
+
+                {activeScreen === "explore-stars" && (
+                  <StarsScreen
+                    key="explore-stars"
+                    onBack={handleBack}
+                  />
+                )}
+
+                {activeScreen === "explore-moons" && (
+                  <MoonsScreen
+                    key="explore-moons"
+                    onBack={handleBack}
+                  />
+                )}
+
+                {activeScreen === "explore-solar-system" && (
+                  <SolarSystemScreen
+                    key="explore-solar-system"
+                    onBack={handleBack}
+                  />
+                )}
+
+                {activeScreen === "explore-physics" && (
+                  <PhysicsScreen
+                    key="explore-physics"
                     onBack={handleBack}
                   />
                 )}
