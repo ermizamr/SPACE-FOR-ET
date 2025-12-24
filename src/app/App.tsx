@@ -85,21 +85,23 @@ export default function App() {
   };
 
   // Handle topic selection from explore screen
-  const handleSelectTopic = (topic: string) => {
+  // Accept the hyphenated/lowercase topicId that ExploreScreen sends (e.g. "telescopes", "solar-system")
+  const handleSelectTopic = (topicId: string) => {
     const topicToScreen: Record<string, Screen> = {
-      "Telescopes": "telescopes",
-      "Rockets": "rockets",
-      "Planets": "planets",
-      "Satellites": "satellites",
-      "Stars": "stars",
-      "Moons": "moons",
-      "Solar System": "solar-system",
-      "Physics": "physics",
+      "telescopes": "telescopes",
+      "rockets": "rockets",
+      "planets": "planets",
+      "satellites": "satellites",
+      "stars": "stars",
+      "moons": "moons",
+      "solar-system": "solar-system",
+      "physics": "physics",
     };
     
-    const screen = topicToScreen[topic];
+    const screen = topicToScreen[topicId];
     if (screen) {
       setActiveScreen(screen);
+      // Optionally update activeTab if you want Explore to remain selected or change tab — keep as-is
     }
   };
 
