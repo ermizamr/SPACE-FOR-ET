@@ -116,6 +116,7 @@ export function AboutScreen({ onBack, onNavigateToDesignSystem }: AboutScreenPro
           >
             Contact me
           </a>
+        </motion.div>
       </div>
 
 

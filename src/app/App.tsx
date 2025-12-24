@@ -13,6 +13,14 @@ import { DesignSystemScreen } from "./components/DesignSystemScreen";
 import { StargazingScreen } from "./components/StargazingScreen";
 import { BottomNav } from "./components/BottomNav";
 import { InstallPrompt } from "./components/InstallPrompt";
+import TelescopeScreen from "./components/explore/TelescopeScreen";
+import RocketsScreen from "./components/explore/RocketsScreen";
+import PlanetsScreen from "./components/explore/PlanetsScreen";
+import SatellitesScreen from "./components/explore/SatellitesScreen";
+import StarsScreen from "./components/explore/StarsScreen";
+import MoonsScreen from "./components/explore/MoonsScreen";
+import SolarSystemScreen from "./components/explore/SolarSystemScreen";
+import PhysicsScreen from "./components/explore/PhysicsScreen";
 
 /**
  * SPACE for ET - Educational Space Exploration Mobile App
@@ -38,7 +46,7 @@ import { InstallPrompt } from "./components/InstallPrompt";
  */
 
 type AppState = "splash" | "onboarding" | "main";
-type Screen = "home" | "history" | "breakthroughs" | "news" | "ethiopia" | "explore" | "about" | "design-system" | "stargazing";
+type Screen = "home" | "history" | "breakthroughs" | "news" | "ethiopia" | "explore" | "about" | "design-system" | "stargazing" | "telescopes" | "rockets" | "planets" | "satellites" | "stars" | "moons" | "solar-system" | "physics";
 
 export default function App() {
   const [appState, setAppState] = useState<AppState>("splash");
@@ -74,6 +82,25 @@ export default function App() {
   const handleBack = () => {
     setActiveScreen("home");
     setActiveTab("home");
+  };
+
+  // Handle topic selection from explore screen
+  const handleSelectTopic = (topic: string) => {
+    const topicToScreen: Record<string, Screen> = {
+      "Telescopes": "telescopes",
+      "Rockets": "rockets",
+      "Planets": "planets",
+      "Satellites": "satellites",
+      "Stars": "stars",
+      "Moons": "moons",
+      "Solar System": "solar-system",
+      "Physics": "physics",
+    };
+    
+    const screen = topicToScreen[topic];
+    if (screen) {
+      setActiveScreen(screen);
+    }
   };
 
   return (
@@ -138,6 +165,7 @@ export default function App() {
                   <ExploreScreen
                     key="explore"
                     onBack={handleBack}
+                    onSelectTopic={handleSelectTopic}
                   />
                 )}
 
@@ -159,6 +187,62 @@ export default function App() {
                 {activeScreen === "stargazing" && (
                   <StargazingScreen
                     key="stargazing"
+                    onBack={handleBack}
+                  />
+                )}
+
+                {activeScreen === "telescopes" && (
+                  <TelescopeScreen
+                    key="telescopes"
+                    onBack={handleBack}
+                  />
+                )}
+
+                {activeScreen === "rockets" && (
+                  <RocketsScreen
+                    key="rockets"
+                    onBack={handleBack}
+                  />
+                )}
+
+                {activeScreen === "planets" && (
+                  <PlanetsScreen
+                    key="planets"
+                    onBack={handleBack}
+                  />
+                )}
+
+                {activeScreen === "satellites" && (
+                  <SatellitesScreen
+                    key="satellites"
+                    onBack={handleBack}
+                  />
+                )}
+
+                {activeScreen === "stars" && (
+                  <StarsScreen
+                    key="stars"
+                    onBack={handleBack}
+                  />
+                )}
+
+                {activeScreen === "moons" && (
+                  <MoonsScreen
+                    key="moons"
+                    onBack={handleBack}
+                  />
+                )}
+
+                {activeScreen === "solar-system" && (
+                  <SolarSystemScreen
+                    key="solar-system"
+                    onBack={handleBack}
+                  />
+                )}
+
+                {activeScreen === "physics" && (
+                  <PhysicsScreen
+                    key="physics"
                     onBack={handleBack}
                   />
                 )}
