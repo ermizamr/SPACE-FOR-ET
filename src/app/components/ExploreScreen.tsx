@@ -1,22 +1,33 @@
 import { motion } from "motion/react";
 import { ArrowLeft, Telescope, Rocket, Globe, Satellite, Star, Moon, Sun, Atom } from "lucide-react";
 
+export type ExploreTopicId =
+  | "telescopes"
+  | "rockets"
+  | "planets"
+  | "satellites"
+  | "stars"
+  | "moons"
+  | "solar-system"
+  | "physics";
+
 interface ExploreScreenProps {
   onBack: () => void;
+  onTopicSelect: (topic: ExploreTopicId) => void;
 }
 
-const topics = [
-  { icon: Telescope, title: "Telescopes", color: "from-[#6A5ACD] to-[#4169E1]" },
-  { icon: Rocket, title: "Rockets", color: "from-[#4169E1] to-[#1E90FF]" },
-  { icon: Globe, title: "Planets", color: "from-[#1E90FF] to-[#00BFFF]" },
-  { icon: Satellite, title: "Satellites", color: "from-[#00BFFF] to-[#6A5ACD]" },
-  { icon: Star, title: "Stars", color: "from-[#FFD700] to-[#FFA500]" },
-  { icon: Moon, title: "Moons", color: "from-[#C0C0C0] to-[#808080]" },
-  { icon: Sun, title: "Solar System", color: "from-[#FFA500] to-[#FF8C00]" },
-  { icon: Atom, title: "Physics", color: "from-[#6A5ACD] to-[#FFD700]" },
+const topics: Array<{ id: ExploreTopicId; icon: typeof Telescope; title: string; color: string }> = [
+  { id: "telescopes", icon: Telescope, title: "Telescopes", color: "from-[#6A5ACD] to-[#4169E1]" },
+  { id: "rockets", icon: Rocket, title: "Rockets", color: "from-[#4169E1] to-[#1E90FF]" },
+  { id: "planets", icon: Globe, title: "Planets", color: "from-[#1E90FF] to-[#00BFFF]" },
+  { id: "satellites", icon: Satellite, title: "Satellites", color: "from-[#00BFFF] to-[#6A5ACD]" },
+  { id: "stars", icon: Star, title: "Stars", color: "from-[#FFD700] to-[#FFA500]" },
+  { id: "moons", icon: Moon, title: "Moons", color: "from-[#C0C0C0] to-[#808080]" },
+  { id: "solar-system", icon: Sun, title: "Solar System", color: "from-[#FFA500] to-[#FF8C00]" },
+  { id: "physics", icon: Atom, title: "Physics", color: "from-[#6A5ACD] to-[#FFD700]" },
 ];
 
-export function ExploreScreen({ onBack }: ExploreScreenProps) {
+export function ExploreScreen({ onBack, onTopicSelect }: ExploreScreenProps) {
   return (
     <div className="min-h-screen bg-[#0B1026] pb-24">
       {/* Header */}
@@ -60,6 +71,15 @@ export function ExploreScreen({ onBack }: ExploreScreenProps) {
                 transition={{ delay: index * 0.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="aspect-square rounded-3xl bg-gradient-to-br from-gray-900 to-gray-800 overflow-hidden shadow-xl cursor-pointer relative"
+                onClick={() => onTopicSelect(topic.id)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    onTopicSelect(topic.id);
+                  }
+                }}
+                role="button"
+                tabIndex={0}
               >
                 {/* Gradient overlay */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${topic.color} opacity-20`} />
