@@ -3,7 +3,6 @@ import { ArrowLeft, Telescope, Rocket, Globe, Satellite, Star, Moon, Sun, Atom }
 
 interface ExploreScreenProps {
   onBack: () => void;
-  onSelectTopic?: (topic: string) => void;
 }
 
 const topics = [
@@ -17,7 +16,7 @@ const topics = [
   { icon: Atom, title: "Physics", color: "from-[#6A5ACD] to-[#FFD700]" },
 ];
 
-export function ExploreScreen({ onBack, onSelectTopic }: ExploreScreenProps) {
+export function ExploreScreen({ onBack }: ExploreScreenProps) {
   return (
     <div className="min-h-screen bg-[#0B1026] pb-24">
       {/* Header */}
@@ -60,7 +59,6 @@ export function ExploreScreen({ onBack, onSelectTopic }: ExploreScreenProps) {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: index * 0.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => onSelectTopic?.(topic.title)}
                 className="aspect-square rounded-3xl bg-gradient-to-br from-gray-900 to-gray-800 overflow-hidden shadow-xl cursor-pointer relative"
               >
                 {/* Gradient overlay */}
